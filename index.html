@@ -35,12 +35,12 @@
 
         // Loop through the posts and display them
         data.forEach(post => {
-          container.append(
+          container.append(`
             <div class="post">
               <h3>${post.title}</h3>
               <p>${post.body}</p>
             </div>
-          );
+          `);
         });
       });
     });
