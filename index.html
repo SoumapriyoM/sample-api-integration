@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample API Integration</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #api-results {
+      margin-top: 20px;
+    }
+    .post {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sample API Integration</h1>
+  <p>Below is a list of posts fetched from a free sample API.</p>
+  <div id="api-results">Loading data...</div>
+
+  <script>
+    $(document).ready(function () {
+      // Fetch data from the JSONPlaceholder API
+      $.getJSON("https://jsonplaceholder.typicode.com/posts", function (data) {
+        const container = $('#api-results');
+        container.empty(); // Clear the loading text
+
+        // Loop through the posts and display them
+        data.forEach(post => {
+          container.append(
+            <div class="post">
+              <h3>${post.title}</h3>
+              <p>${post.body}</p>
+            </div>
+          );
+        });
+      });
+    });
+  </script>
+</body>
+</html>
