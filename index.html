@@ -5,22 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Listings</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        details { margin-bottom: 10px; border: 1px solid #ddd; padding: 10px; border-radius: 5px; }
+        summary { cursor: pointer; font-weight: bold; }
+    </style>
 </head>
 <body>
-    <section class="page__content e-content" itemprop="text">
-        <p>Click on ▶ to expand the job listing and to access the full ad.</p>
-        <div id="job-listings">
-            <!-- Job Listings Here -->
-        </div>
-        <p>Job listings are courtesy of <a href="https://econjobmarket.org/">EconJobMarket.org</a>. Currently only ads with job location in India are displayed here.</p>
-    </section>
+
+    <h1>IJME: Job Listings</h1>
+    <p>Click on ▶ to expand the job listing and access the full ad.</p>
+
+    <div id="job-listings">
+        <p>Loading job listings...</p>
+    </div>
 
     <script>
         $(document).ready(function() {
             $.getJSON("https://backend.econjobmarket.org/data/zz_public/jsonp/Feature/5?callback=?", function(data) {
-                parseResults(data);
+                let html = "";
+                data.forEach(job => {
+                    html += `<details>
+                        <summary><b>${job.title}</b> - ${job.organization}</summary>
+                        <p><b>Location:</b> ${job.location}</p>
+                        <p><b>Open Date:</b> ${job.open_date}</p>
+                        <p><b>Close Date:</b> ${job.close_date}</p>
+                        <p><a href="${job.url}" target="_blank">See full ad</a></p>
+                    </details>`;
+                });
+                $("#job-listings").html(html);
+            }).fail(function() {
+                $("#job-listings").html("<p>Error loading job listings.</p>");
             });
         });
     </script>
+
 </body>
 </html>
