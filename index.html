@@ -3,12 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Listings</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>IJME: Job Listings - SERI</title>
+
+    <!-- External CSS for better styling -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
-        details { margin-bottom: 10px; border: 1px solid #ddd; padding: 10px; border-radius: 5px; }
-        summary { cursor: pointer; font-weight: bold; }
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+        }
+        details {
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -20,6 +38,7 @@
         <p>Loading job listings...</p>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
             $.getJSON("https://backend.econjobmarket.org/data/zz_public/jsonp/Feature/5?callback=?", function(data) {
